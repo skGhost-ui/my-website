@@ -7,79 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Share Tech Mono', 'Courier New', monospace;
-            overflow-x: hidden;
-        }
-        .text-matrix {
-            color: #39ff14 !important;
-            text-shadow: 0 0 5px #39ff14;
-        }
-        .border-success {
-            border-color: #39ff14 !important;
-            box-shadow: 0 2px 10px rgba(57, 255, 20, 0.2);
-        }
-        .form-control {
-            background-color: #111;
-            border: 1px solid #39ff14;
-            color: #fff;
-            font-family: 'Share Tech Mono', monospace;
-        }
-        .form-control:focus {
-            background-color: #222;
-            color: #39ff14;
-            border-color: #39ff14;
-            box-shadow: 0 0 10px #39ff14;
-        }
-        .btn-matrix {
-            color: #39ff14;
-            border-color: #39ff14;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-        .btn-matrix:hover {
-            background-color: #39ff14;
-            color: #000000;
-            box-shadow: 0 0 15px #39ff14;
-        }
-        .contact-hacker-img {
-            border: 2px solid #39ff14;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
-            border-radius: 8px;
-            max-height: 180px;
-            object-fit: cover;
-            width: 100%;
-        }
-        .terminal-box {
-            background-color: #0a0a0a;
-            border-left: 3px solid #39ff14;
-            padding: 10px;
-            font-size: 0.9rem;
-        }
-
-        /* Hacker Style Custom Popup / Modal CSS */
-        .hacker-modal {
-            display: none; 
-            position: fixed; 
-            z-index: 9999; 
-            left: 0; top: 0; 
-            width: 100%; height: 100%; 
-            background-color: rgba(0,0,0,0.85); 
-            align-items: center; 
-            justify-content: center;
-        }
-        .modal-content-cyber {
-            background-color: #050505;
-            border: 2px solid #39ff14;
-            box-shadow: 0 0 25px #39ff14;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-        }
+        body { background-color: #000000; color: #ffffff; font-family: 'Share Tech Mono', monospace; overflow-x: hidden; }
+        .text-matrix { color: #39ff14 !important; text-shadow: 0 0 5px #39ff14; }
+        .border-success { border-color: #39ff14 !important; box-shadow: 0 2px 10px rgba(57, 255, 20, 0.2); }
+        .form-control { background-color: #111; border: 1px solid #39ff14; color: #fff; font-family: 'Share Tech Mono', monospace; }
+        .form-control:focus { background-color: #222; color: #39ff14; border-color: #39ff14; box-shadow: 0 0 10px #39ff14; }
+        .btn-matrix { color: #39ff14; border-color: #39ff14; font-weight: bold; letter-spacing: 2px; }
+        .btn-matrix:hover { background-color: #39ff14; color: #000000; box-shadow: 0 0 15px #39ff14; }
+        .contact-hacker-img { border: 2px solid #39ff14; box-shadow: 0 0 15px rgba(57, 255, 20, 0.3); border-radius: 8px; max-height: 180px; object-fit: cover; width: 100%; }
+        .terminal-box { background-color: #0a0a0a; border-left: 3px solid #39ff14; padding: 10px; font-size: 0.9rem; }
+        .hacker-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); align-items: center; justify-content: center; }
+        .modal-content-cyber { background-color: #050505; border: 2px solid #39ff14; box-shadow: 0 0 25px #39ff14; padding: 30px; border-radius: 10px; text-align: center; max-width: 450px; width: 90%; }
     </style>
 </head>
 <body>
@@ -89,25 +27,22 @@
             <a class="navbar-brand text-matrix" href="index.html">[ f society ]</a>
             <div class="navbar-nav ms-auto flex-row">
                 <a class="nav-link text-matrix px-2" href="index.html">// HOME</a>
+                <a class="nav-link text-matrix px-2" href="about.html">// ABOUT</a>
                 <a class="nav-link text-matrix px-2" href="contact.html">// CONTACT</a>
             </div>
         </div>
     </nav>
 
     <div class="container my-5" style="max-width: 550px;">
-        
         <div class="text-center mb-4">
             <img src="images.jpeg" alt="Fsociety Banner" class="contact-hacker-img">
         </div>
-
         <h1 class="text-matrix mb-2 text-center">> ESTABLISH CONNECTION</h1>
         <p class="text-white-50 text-center mb-4">Leave an encrypted message. We are watching.</p>
-        
         <div class="terminal-box mb-4 text-start">
             <span class="text-matrix">[STATUS]</span> SECURE NODE DETECTED...<br>
             <span class="text-matrix">[PATCH]</span> END-TO-END ENCRYPTION ENABLED.
         </div>
-        
         <form id="cyberForm" action="https://formspree.io/f/mrevjzny" method="POST">
             <div class="mb-3 text-start">
                 <label class="text-matrix mb-2">> ENCRYPTED_NAME:</label>
@@ -136,34 +71,13 @@
     <script>
         const form = document.getElementById('cyberForm');
         const modal = document.getElementById('thanksModal');
-
         form.addEventListener('submit', async function(e) {
-            e.preventDefault(); // Default redirect rokne ke liye
-            
+            e.preventDefault();
             const formData = new FormData(form);
-            
-            // Data send ho raha hai Formspree par background mein
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                // Agar data chala gaya to popup show hoga aur form khali ho jayega
-                modal.style.display = 'flex';
-                form.reset();
-            } else {
-                alert("TRANSMISSION FAILED. Please try again.");
-            }
+            const response = await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' } });
+            if (response.ok) { modal.style.display = 'flex'; form.reset(); } else { alert("TRANSMISSION FAILED."); }
         });
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
+        function closeModal() { modal.style.display = 'none'; }
     </script>
-
 </body>
 </html>
