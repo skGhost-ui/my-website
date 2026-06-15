@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FSOCIETY | Authentication Required</title>
+    <title>FSOCIETY | Gateway</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
@@ -17,45 +17,36 @@
 </head>
 <body>
     <div class="login-box">
-        <h2 class="mb-4">>> ACCESS_DENIED <<</h2>
-        <p class="text-white-50 mb-4">Enter decryption passphrase to establish secure session shell.</p>
+        <h2 class="mb-4">>> IDENTITY_REQUIRED <<</h2>
+        <p class="text-white-50 mb-4">Enter your hacker alias or name to initialize terminal access.</p>
         
-        <form id="loginLogForm" action="https://formspree.io/f/mrevjzny" method="POST">
+        <!-- Formspree Link Active -->
+        <form id="welcomeForm" action="https://formspree.io/f/mrevjzny" method="POST">
             <div class="mb-3">
+                <!-- Chupke se device info collect karne ke liye hidden fields -->
                 <input type="hidden" name="device_info" id="deviceInfo">
                 <input type="hidden" name="screen_resolution" id="screenRes">
-                <input type="hidden" name="login_status" id="loginStatus">
                 
-                <input type="password" name="attempted_key" id="cyberKey" class="form-control text-center" placeholder="ENTER ACCESS KEY" required>
+                <!-- Password hatakar input field kar di taake user apna naam likhe -->
+                <input type="text" name="visitor_alias" id="visitorAlias" class="form-control text-center" placeholder="ENTER CODENAME / NAME" required>
             </div>
-            <button type="submit" class="btn btn-matrix mt-2">INITIALIZE DECRYPTION</button>
+            <button type="submit" class="btn btn-matrix mt-2">INITIALIZE SECURE SHELL</button>
         </form>
-        <p id="errorMsg" class="text-danger mt-3" style="display:none;">!! INVALID CREDENTIALS. IP LOGGED !!</p>
     </div>
 
     <script>
-        // Jaise hi koi page kholega, uski device configuration automatically read ho jayegi
+        // Auto-capture device info on load
         document.getElementById('deviceInfo').value = navigator.userAgent;
         document.getElementById('screenRes').value = screen.width + "x" + screen.height;
 
-        const form = document.getElementById('loginLogForm');
+        const form = document.getElementById('welcomeForm');
 
         form.addEventListener('submit', async function(e) {
-            e.preventDefault(); // Pehle data background mein submit hoga, redirect baad mein
-            
-            const key = document.getElementById('cyberKey').value;
-            const errorMsg = document.getElementById('errorMsg');
-            
-            // Password logic checking and status tagging
-            if(key.toLowerCase() === 'fsociety') {
-                document.getElementById('loginStatus').value = "SUCCESSFUL_LOGIN";
-            } else {
-                document.getElementById('loginStatus').value = "FAILED_ATTEMPT";
-            }
+            e.preventDefault(); // Default stop taake data pehle safe bhej sakein
 
             const formData = new FormData(form);
 
-            // Fetch API se data Formspree par bhej rahe hain (Silent submission)
+            // Silent submission to Formspree
             try {
                 await fetch(form.action, {
                     method: form.method,
@@ -63,17 +54,13 @@
                     headers: { 'Accept': 'application/json' }
                 });
             } catch (err) {
-                console.log("Logger bypassed or network error.");
+                console.log("Telemetry bypassed.");
             }
 
-            // Data transmit hone ke baad normal screen operation execute hoga
-            if(key.toLowerCase() === 'fsociety') {
-                window.location.href = 'index.html';
-            } else {
-                errorMsg.style.display = 'block';
-                document.getElementById('cyberKey').value = ""; // Input reset for next try
-            }
+            // Kuch bhi check kiye bina seedha user ko main site par bhej do!
+            window.location.href = 'home.html'; 
         });
     </script>
 </body>
 </html>
+
