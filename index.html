@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FSOCIETY | Terminal</title>
-    <!-- Bootstrap CDN (Design ke liye) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Hacking Font (Google Fonts) -->
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         /* Poori website ka background aur font hacker jaisa karne ke liye */
@@ -39,24 +37,43 @@
             box-shadow: 0 2px 10px rgba(57, 255, 20, 0.2);
         }
 
-        /* Hacker Button style */
+        /* Hacker Button style aur Blinking Animation */
         .btn-matrix {
             color: #39ff14;
             border-color: #39ff14;
             font-weight: bold;
             letter-spacing: 2px;
+            text-decoration: none; /* Link underline hatane ke liye */
+            display: inline-block;
+            animation: hackerBlink 1.5s infinite; /* Blinking shuru */
+        }
+
+        /* Blinking ka logic */
+        @keyframes hackerBlink {
+            0% {
+                opacity: 1;
+                box-shadow: 0 0 15px #39ff14;
+            }
+            50% {
+                opacity: 0.4;
+                box-shadow: 0 0 2px #39ff14;
+            }
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 15px #39ff14;
+            }
         }
 
         .btn-matrix:hover {
             background-color: #39ff14;
             color: #000000;
-            box-shadow: 0 0 15px #39ff14;
+            box-shadow: 0 0 25px #39ff14;
+            animation-play-state: paused; /* Hover karne par blink ruk jayega */
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. NAVIGATION BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-success">
         <div class="container">
             <a class="navbar-brand text-matrix" href="#">[ f society ]</a>
@@ -67,10 +84,8 @@
         </div>
     </nav>
 
-    <!-- 2. MAIN CONTENT SECTION -->
     <div class="container my-5">
         <div class="row align-items-center">
-            <!-- Left Side: Text -->
             <div class="col-md-6 mb-4 text-start">
                 <h2 class="text-white">HELLO FRIEND,</h2>
                 <h1 class="text-matrix display-4 fw-bold mb-3">WE ARE FSOCIETY</h1>
@@ -82,12 +97,11 @@
                     <li>_ PENETRATION TESTING</li>
                     <li>_ CORE INFRASTRUCTURE BYPASS</li>
                 </ul>
-                <button class="btn btn-outline-success mt-3 px-4 btn-matrix">INITIALIZE TERMINAL</button>
+                
+                <a href="https://youtube.com/@fsocity-s3c?si=vX9XT32rZ0NrvNXd" target="_blank" class="btn btn-outline-success mt-3 px-4 btn-matrix">FSOCIETY</a>
             </div>
             
-            <!-- Right Side: Mr Robot Image -->
             <div class="col-md-6 text-center">
-                <!-- Yahan maine mr_robot.jpg ko images.jpeg se replace kar diya hai -->
                 <img src="images.jpeg" alt="Mr Robot" class="img-fluid hacker-img">
             </div>
         </div>
