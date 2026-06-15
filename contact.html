@@ -19,6 +19,7 @@
         }
         .border-success {
             border-color: #39ff14 !important;
+            box-shadow: 0 2px 10px rgba(57, 255, 20, 0.2);
         }
         .form-control {
             background-color: #111;
@@ -36,11 +37,27 @@
             color: #39ff14;
             border-color: #39ff14;
             font-weight: bold;
+            letter-spacing: 2px;
         }
         .btn-matrix:hover {
             background-color: #39ff14;
             color: #000000;
             box-shadow: 0 0 15px #39ff14;
+        }
+        /* Nayi image ke liye custom style */
+        .contact-hacker-img {
+            border: 2px solid #39ff14;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+            border-radius: 8px;
+            max-height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .terminal-box {
+            background-color: #0a0a0a;
+            border-left: 3px solid #39ff14;
+            padding: 10px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -56,22 +73,32 @@
         </div>
     </nav>
 
-    <div class="container my-5" style="max-width: 600px;">
-        <h1 class="text-matrix mb-4 text-center">> ESTABLISH CONNECTION</h1>
-        <p class="text-white-50 text-center mb-5">Leave an encrypted message. We are watching.</p>
+    <div class="container my-5" style="max-width: 550px;">
+        
+        <div class="text-center mb-4">
+            <img src="images.jpeg" alt="Fsociety Banner" class="contact-hacker-img">
+        </div>
+
+        <h1 class="text-matrix mb-2 text-center">> ESTABLISH CONNECTION</h1>
+        <p class="text-white-50 text-center mb-4">Leave an encrypted message. We are watching.</p>
+        
+        <div class="terminal-box mb-4 text-start">
+            <span class="text-matrix">[STATUS]</span> SECURE NODE DETECTED...<br>
+            <span class="text-matrix">[PATCH]</span> END-TO-END ENCRYPTION ENABLED.
+        </div>
         
         <form>
-            <div class="mb-3">
+            <div class="mb-3 text-start">
                 <label class="text-matrix mb-2">> ENCRYPTED_NAME:</label>
                 <input type="text" class="form-control" placeholder="Enter name..." required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-start">
                 <label class="text-matrix mb-2">> SECURE_EMAIL:</label>
                 <input type="email" class="form-control" placeholder="Enter email..." required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-start">
                 <label class="text-matrix mb-2">> MESSAGE_PAYLOAD:</label>
-                <textarea class="form-control" rows="5" placeholder="Type your message here..." required></textarea>
+                <textarea class="form-control" rows="4" placeholder="Type your message here..." required></textarea>
             </div>
             <button type="submit" class="btn btn-outline-success w-100 btn-matrix mt-3">TRANSMIT DATA</button>
         </form>
