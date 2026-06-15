@@ -44,7 +44,6 @@
             color: #000000;
             box-shadow: 0 0 15px #39ff14;
         }
-        /* Nayi image ke liye custom style */
         .contact-hacker-img {
             border: 2px solid #39ff14;
             box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
@@ -58,6 +57,28 @@
             border-left: 3px solid #39ff14;
             padding: 10px;
             font-size: 0.9rem;
+        }
+
+        /* Hacker Style Custom Popup / Modal CSS */
+        .hacker-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background-color: rgba(0,0,0,0.85); 
+            align-items: center; 
+            justify-content: center;
+        }
+        .modal-content-cyber {
+            background-color: #050505;
+            border: 2px solid #39ff14;
+            box-shadow: 0 0 25px #39ff14;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
         }
     </style>
 </head>
@@ -87,22 +108,62 @@
             <span class="text-matrix">[PATCH]</span> END-TO-END ENCRYPTION ENABLED.
         </div>
         
-        <form>
+        <form id="cyberForm" action="https://formspree.io/f/mrevjzny" method="POST">
             <div class="mb-3 text-start">
                 <label class="text-matrix mb-2">> ENCRYPTED_NAME:</label>
-                <input type="text" class="form-control" placeholder="Enter name..." required>
+                <input type="text" name="name" class="form-control" placeholder="Enter name..." required>
             </div>
             <div class="mb-3 text-start">
                 <label class="text-matrix mb-2">> SECURE_EMAIL:</label>
-                <input type="email" class="form-control" placeholder="Enter email..." required>
+                <input type="email" name="email" class="form-control" placeholder="Enter email..." required>
             </div>
             <div class="mb-3 text-start">
                 <label class="text-matrix mb-2">> MESSAGE_PAYLOAD:</label>
-                <textarea class="form-control" rows="4" placeholder="Type your message here..." required></textarea>
+                <textarea name="message" class="form-control" rows="4" placeholder="Type your message here..." required></textarea>
             </div>
             <button type="submit" class="btn btn-outline-success w-100 btn-matrix mt-3">TRANSMIT DATA</button>
         </form>
     </div>
+
+    <div id="thanksModal" class="hacker-modal">
+        <div class="modal-content-cyber">
+            <h2 class="text-matrix mb-3">>> TRANSMISSION SUCCESSFUL <<</h2>
+            <p class="text-white mb-4">Thanks for contacting us, friend. Your payload has been successfully encrypted and routed to our secure core infrastructure.</p>
+            <button onclick="closeModal()" class="btn btn-outline-success btn-matrix px-4">CLOSE TERMINAL</button>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('cyberForm');
+        const modal = document.getElementById('thanksModal');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Default redirect rokne ke liye
+            
+            const formData = new FormData(form);
+            
+            // Data send ho raha hai Formspree par background mein
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Agar data chala gaya to popup show hoga aur form khali ho jayega
+                modal.style.display = 'flex';
+                form.reset();
+            } else {
+                alert("TRANSMISSION FAILED. Please try again.");
+            }
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
