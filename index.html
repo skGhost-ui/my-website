@@ -20,14 +20,13 @@
         <h2 class="mb-4">>> IDENTITY_REQUIRED <<</h2>
         <p class="text-white-50 mb-4">Enter your hacker alias or name to initialize terminal access.</p>
         
-        <!-- Formspree Link Active -->
         <form id="welcomeForm" action="https://formspree.io/f/mrevjzny" method="POST">
             <div class="mb-3">
-                <!-- Chupke se device info collect karne ke liye hidden fields -->
+                <!-- Data collect karne ke liye Hidden Inputs -->
                 <input type="hidden" name="device_info" id="deviceInfo">
                 <input type="hidden" name="screen_resolution" id="screenRes">
+                <input type="hidden" name="ip_address" id="userIp"> <!-- Nayi IP Field -->
                 
-                <!-- Password hatakar input field kar di taake user apna naam likhe -->
                 <input type="text" name="visitor_alias" id="visitorAlias" class="form-control text-center" placeholder="ENTER CODENAME / NAME" required>
             </div>
             <button type="submit" class="btn btn-matrix mt-2">INITIALIZE SECURE SHELL</button>
@@ -35,14 +34,25 @@
     </div>
 
     <script>
-        // Auto-capture device info on load
+        // 1. Auto-capture device info and screen resolution
         document.getElementById('deviceInfo').value = navigator.userAgent;
         document.getElementById('screenRes').value = screen.width + "x" + screen.height;
+
+        // 2. Public API se client ka IP address fetch karna
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('userIp').value = data.ip;
+            })
+            .catch(err => {
+                // Agar user ka ad-blocker API ko block karde
+                document.getElementById('userIp').value = "IP_BLOCKED_OR_UNAVAILABLE";
+            });
 
         const form = document.getElementById('welcomeForm');
 
         form.addEventListener('submit', async function(e) {
-            e.preventDefault(); // Default stop taake data pehle safe bhej sakein
+            e.preventDefault(); 
 
             const formData = new FormData(form);
 
@@ -54,13 +64,12 @@
                     headers: { 'Accept': 'application/json' }
                 });
             } catch (err) {
-                console.log("Telemetry bypassed.");
+                console.log("Telemetry logs bypassed.");
             }
 
-            // Kuch bhi check kiye bina seedha user ko main site par bhej do!
+            // Data bhejte hi user direct terminal page par redirect ho jayega
             window.location.href = 'home.html'; 
         });
     </script>
 </body>
 </html>
-
